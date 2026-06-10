@@ -11,7 +11,7 @@ from tomplot import set_tomplot_style, plot_convergence
 # ---------------------------------------------------------------------------- #
 # Directory for results and plots
 # ---------------------------------------------------------------------------- #
-plot_dir = f'{abspath(dirname(__file__))}/../../source/figures'
+plot_dir = f'{abspath(dirname(__file__))}/../figures'
 plot_name = f'{plot_dir}/gusto_convergence.png'
 base_results_dir = f'{abspath(dirname(__file__))}/../results/'
 base_results_name = 'linear_sw_gw'
@@ -29,7 +29,6 @@ legend_loc = 'upper center'
 xlims = [12.7, 13.5]  # Set manually
 ylims = [11, 22]
 
-n_values = [12, 16, 20]
 elements = ['RTCF0', 'RTCF1', 'RTCF2', 'BDM1', 'BDM2']
 colours = ['red', 'blue', 'purple', 'orange', 'green', 'brown', 'pink']
 markers = ['s', 'o', '^', 'D', 'v', 'P', '*']
@@ -39,14 +38,14 @@ for element, colour, marker, label in zip(elements, colours, markers, labels):
     error_data = []
 
     if element in ['BDM1', 'BDM2']:
+        dt = 60
         n_values = [11, 12, 13, 14, 15, 16, 17]
         dx_values = [2*np.pi*6371220.*np.cos(np.atan2(1,2))/(5*n) for n in n_values]
-        dt = 60
 
     elif element in ['RTCF0', 'RTCF1', 'RTCF2']:
+        dt = 60
         n_values = [16, 17, 18, 19, 20, 21, 22, 23]
         dx_values = [2*np.pi*6371220./(4*n) for n in n_values]
-        dt = 60
 
     for n_value in n_values:
         results_name = f'{base_results_dir}/{base_results_name}_trapezium_rule_{element}_n{n_value}_dt{dt}/error_diagnostic.nc'

@@ -6,7 +6,7 @@ equations in spherical geometry'', JCP.
 
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from firedrake import (
-  Function, SpatialCoordinate, as_vector, pi, errornorm, sin
+  Function, SpatialCoordinate, pi, errornorm, sin, grad
 )
 from firedrake.fml import keep
 from gusto import (
@@ -79,7 +79,7 @@ def linear_sw_w2(
     chkptfreq = None
     to_checkpoint = False
     output = OutputParameters(
-        dirname=dirname, dumpfreq=dumpfreq, dump_nc=True, dump_vtus=False,
+        dirname=dirname, dumpfreq=dumpfreq, dump_nc=True, dump_vtus=True,
         checkpoint=to_checkpoint, chkptfreq=chkptfreq, dumplist=['D']
     )
     diagnostic_fields = [
@@ -135,16 +135,15 @@ def linear_sw_w2(
     D0 = timestepper.fields("D")
     psi = Function(H1)
 
-    psi.interpolate(u_max*sin(lat))
-    uexpr = as_vector([-u_max*y/radius, u_max*x/radius, 0.0])
-    uexpr = domain.gradperp(psi)
+    psi.interpolate(-radius*u_max*sin(lat))
+    uexpr = domain.perp(grad(psi))
     Dexpr = - ((radius*Omega*u_max) * (z/radius)**2) / g
 
     Dbalanced = timestepper.fields("Dbalanced", space=D0.function_space())
-    Dbalanced.interpolate(Dexpr)
+    Dbalanced.project(Dexpr)
 
     u0.project(uexpr)
-    D0.interpolate(Dexpr)
+    D0.project(Dexpr)
 
     Dbar = Function(D0.function_space()).assign(mean_depth)
     timestepper.set_reference_profiles([('D', Dbar)])

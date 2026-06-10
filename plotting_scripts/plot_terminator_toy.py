@@ -17,7 +17,7 @@ test = 'terminator_toy'
 # Directory for results and plots
 # ---------------------------------------------------------------------------- #
 results_file_name = f'{abspath(dirname(__file__))}/../results/{test}/field_output.nc'
-plot_stem = f'{abspath(dirname(__file__))}/../../source/figures/{test}'
+plot_stem = f'{abspath(dirname(__file__))}/../figures/{test}'
 
 # ---------------------------------------------------------------------------- #
 # Plot details

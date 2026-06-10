@@ -63,10 +63,10 @@ linear_convergence:
 	for pair in BDM:1 BDM:2; do \
 		family=$${pair%%:*}; \
 		order=$${pair##*:}; \
-		for ncells in 11 12 13 14 15 16 17 18 19 20; do \
-			python3 test_scripts/linear_sw_gw.py \
-				--ncells_per_edge $$ncells --dt 60.0 --tmax 3600.0 --dumpfreq 60 --stepper trapezium_rule \
-				--element_family $$family --element_order $$order; \
+		for ncells in 7 8 9 10 11 12 13; do \
+			python3 test_scripts/linear_sw_w2.py \
+				--ncells_per_edge $$ncells --dt 15.0 --tmax 3600.0 --dumpfreq 60 --stepper trapezium_rule \
+				--element_family $$family --element_order $$order --dirname linear_sw_w2_proj;  \
 		done; \
 	done
 
@@ -74,10 +74,10 @@ linear_convergence:
 	for pair in RTCF:0 RTCF:1 RTCF:2; do \
 		family=$${pair%%:*}; \
 		order=$${pair##*:}; \
-		for ncells in 15 16 17 18 19 20 21 22 23; do \
-			python3 test_scripts/linear_sw_gw.py \
-				--ncells_per_edge $$ncells --dt 60.0 --tmax 3600.0 --dumpfreq 60 --stepper trapezium_rule \
-				--element_family $$family --element_order $$order \
+		for ncells in 10 11 12 13 14 15 16; do \
+			python3 test_scripts/linear_sw_w2.py \
+				--ncells_per_edge $$ncells --dt 15.0 --tmax 3600.0 --dumpfreq 60 --stepper trapezium_rule \
+				--element_family $$family --element_order $$order --dirname linear_sw_w2_proj;  \
 		done; \
 	done
 

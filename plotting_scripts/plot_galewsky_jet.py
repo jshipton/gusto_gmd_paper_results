@@ -20,7 +20,7 @@ results_dirs = ['galewsky_jet_cubedsphere', 'galewsky_jet_icosahedralsphere']
 # Directory for results and plots
 # ---------------------------------------------------------------------------- #
 results_stem = f'{abspath(dirname(__file__))}/../results/'
-plot_stem = f'{abspath(dirname(__file__))}/../../source/figures/galewsky_jet'
+plot_stem = f'{abspath(dirname(__file__))}/../figures/galewsky_jet'
 
 # ---------------------------------------------------------------------------- #
 # Plot details

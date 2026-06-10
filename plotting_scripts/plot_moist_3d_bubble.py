@@ -16,7 +16,7 @@ test = 'moist_3d_bubble'
 # ---------------------------------------------------------------------------- #
 # Directory for results and plots
 # ---------------------------------------------------------------------------- #
-plot_stem = f'{abspath(dirname(__file__))}/../../source/figures/{test}'
+plot_stem = f'{abspath(dirname(__file__))}/../figures/{test}'
 results_file_name = f'{abspath(dirname(__file__))}/../results/{test}/field_output.nc'
 
 # ---------------------------------------------------------------------------- #

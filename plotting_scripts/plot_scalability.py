@@ -10,7 +10,7 @@ import pandas as pd
 # ---------------------------------------------------------------------------- #
 # Directory for results and plots
 # ---------------------------------------------------------------------------- #
-plot_dir = f'{abspath(dirname(__file__))}/../../source/figures'
+plot_dir = f'{abspath(dirname(__file__))}/../figures'
 plot_name = f'{plot_dir}/gusto_scalability.png'
 
 set_tomplot_style(20)

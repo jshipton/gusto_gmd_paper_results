@@ -19,7 +19,7 @@ test = 'straka'
 # ---------------------------------------------------------------------------- #
 # Directory for results and plots
 # ---------------------------------------------------------------------------- #
-plot_stem = f'{abspath(dirname(__file__))}/../../source/figures/{test}'
+plot_stem = f'{abspath(dirname(__file__))}/../figures/{test}'
 
 # ---------------------------------------------------------------------------- #
 # Plot details

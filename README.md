@@ -2,7 +2,7 @@ Welcome! This is our repository for scripts to generate results for our article:
 "Gusto: a toolkit for compatible finite element dynamical cores."
 
 The results here were generated with:
-- Firedrake version 
+- Firedrake version: 2026.4.1
 - Gusto main at the commit 2348df5295b1e8806e76d992c811cc9155bcd23f
 
 To install Firedrake and Gusto, please follow the instructions on
