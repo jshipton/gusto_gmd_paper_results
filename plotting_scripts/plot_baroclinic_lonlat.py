@@ -30,7 +30,7 @@ plot_stem = f'{abspath(dirname(__file__))}/../figures/{test}'
 field_names = ['Pressure_Vt', 'Temperature']
 slice_along = 'z'
 colour_schemes = ['PiYG_r', 'RdBu_r']
-centre_titles = ['Surface pressure',  'Temperature']
+centre_titles = ['Surface Pressure',  'Temperature']
 field_labels = [r'$P$ (hPa)', r'$T$ (K)']
 
 contours = [

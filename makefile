@@ -42,7 +42,7 @@ spatial_convergence:
 			python3 test_scripts/linear_sw_gw.py \
 				--ncells_per_edge $$ncells --dt 60.0 --tmax 3600.0 --dumpfreq 60 --stepper trapezium_rule \
 				--element_family $$family --element_order $$order --reference_error \
-				--reference_dirname '/data/users/thomas.bendall/gusto_paper_results/results/linear_sw_gw_trapezium_rule_RTCF2_n36_dt15'; \
+				--reference_dirname '/data/users/thomas.bendall/gusto_gmd_paper_results/results/linear_sw_gw_trapezium_rule_RTCF2_n36_dt15'; \
 		done; \
 	done
 
@@ -54,30 +54,7 @@ spatial_convergence:
 			python3 test_scripts/linear_sw_gw.py \
 				--ncells_per_edge $$ncells --dt 60.0 --tmax 3600.0 --dumpfreq 60 --stepper trapezium_rule \
 				--element_family $$family --element_order $$order --reference_error \
-				--reference_dirname '/data/users/thomas.bendall/gusto_paper_results/results/linear_sw_gw_trapezium_rule_RTCF2_n36_dt15'; \
-		done; \
-	done
-
-linear_convergence:
-	# Triangular elements
-	for pair in BDM:1 BDM:2; do \
-		family=$${pair%%:*}; \
-		order=$${pair##*:}; \
-		for ncells in 7 8 9 10 11 12 13; do \
-			python3 test_scripts/linear_sw_w2.py \
-				--ncells_per_edge $$ncells --dt 15.0 --tmax 3600.0 --dumpfreq 60 --stepper trapezium_rule \
-				--element_family $$family --element_order $$order --dirname linear_sw_w2_proj;  \
-		done; \
-	done
-
-	# Quadrilateral elements
-	for pair in RTCF:0 RTCF:1 RTCF:2; do \
-		family=$${pair%%:*}; \
-		order=$${pair##*:}; \
-		for ncells in 10 11 12 13 14 15 16; do \
-			python3 test_scripts/linear_sw_w2.py \
-				--ncells_per_edge $$ncells --dt 15.0 --tmax 3600.0 --dumpfreq 60 --stepper trapezium_rule \
-				--element_family $$family --element_order $$order --dirname linear_sw_w2_proj;  \
+				--reference_dirname '/data/users/thomas.bendall/gusto_gmd_paper_results/results/linear_sw_gw_trapezium_rule_RTCF2_n36_dt15'; \
 		done; \
 	done
 

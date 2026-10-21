@@ -112,7 +112,7 @@ def dry_baroclinic_sphere(
         dirname=dirname, dumpfreq=dumpfreq, dump_nc=True, dump_vtus=False
     )
     diagnostic_fields = [
-        MeridionalComponent('u'), ZonalComponent('u'),RadialComponent('u'),
+        MeridionalComponent('u'), ZonalComponent('u'), RadialComponent('u'),
         Temperature(eqn), Pressure(eqn)
     ]
     io = IO(domain, output, diagnostic_fields=diagnostic_fields)
