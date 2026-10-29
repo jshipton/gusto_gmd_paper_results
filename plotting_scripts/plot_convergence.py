@@ -24,7 +24,7 @@ fig, axarray = plt.subplots(1, 2, figsize=(12, 5))
 # ---------------------------------------------------------------------------- #
 log_by = 'data'
 xlabel = r"$\log(\Delta x)$"
-ylabel = r"$\log(||D - D_{ref}||)$"
+ylabel = r"$\log(||D - D_0||)$"
 legend_loc = 'upper center'
 xlims = [12.7, 13.5]  # Set manually
 ylims = [11, 22]
@@ -76,14 +76,14 @@ axarray[0].grid()
 
 log_by = 'data'
 xlabel = r"$\log(\Delta t)$"
-ylabel = r"$\log(||D - D_{ref}||)$"
+ylabel = r"$\log(||u - u_0||)$"
 legend_loc = 'upper center'
 base_results_name = 'w6'
 
-schemes = ['backward_euler', 'siqn', 'heun', 'ssprk3', 'imex_ssp3', 'imex_ark5']
+schemes = ['backward_euler', 'siqn', 'heun', 'ssprk3', 'imex_ssp3', 'imex_ark4']
 colours = ['red', 'blue', 'purple', 'orange', 'green', 'brown', 'pink']
 markers = ['s', 'o', '^', 'D', 'v', 'P', '*']
-labels = [r'Backward Euler:', r'SIQN:', r'Heun:', r'SSPRK3:', r'IMEX SSP3:', r'IMEX ARK5:']
+labels = [r'Backward Euler:', r'SIQN:', r'Heun:', r'SSPRK3:', r'IMEX SSP3:', r'IMEX ARK4:']
 explicit_dt_values = [60.0, 30.0, 15.0, 7.5, 3.75, 1.875]
 implicit_dt_values = [240.0, 120.0, 60.0, 30.0]
 all_dt_values = [
@@ -112,14 +112,11 @@ for i, (scheme, dt_values, colour, marker, label) in enumerate(zip(schemes, all_
     actual_dt_values = []
 
     for dt_value in dt_values:
-        if scheme == 'imex_ark5' and dt_value == 240.0:
-            # Skip this point for now, will plot separately
-            continue
         try:
             dt_str = dt_str_dict[dt_value]
             results_name = f'{base_results_dir}/{base_results_name}_{scheme}_RTCF1_n128_dt{dt_str}/error_diagnostic.nc'
             results_file = Dataset(results_name, 'r')
-            data_point = results_file['D_error'][:][-1]
+            data_point = results_file['u_error'][:][-1]
             error_data.append(data_point)
             actual_dt_values.append(dt_value)
         except FileNotFoundError:
@@ -130,22 +127,9 @@ for i, (scheme, dt_values, colour, marker, label) in enumerate(zip(schemes, all_
         color=colour, marker=marker, log_by=log_by
     )
 
-    # Special exclusion of point from line of best fit
-    if scheme == 'imex_ark5':
-        dt_value = 240.0
-        dt_str = dt_str_dict[dt_value]
-        results_name = f'{base_results_dir}/{base_results_name}_{scheme}_RTCF1_n128_dt{dt_str}/error_diagnostic.nc'
-        results_file = Dataset(results_name, 'r')
-        data_point = results_file['D_error'][:][-1]
-        error_data = [data_point]
-        actual_dt_values = [dt_value]
-        plot_convergence(
-            axarray[1], actual_dt_values, error_data, label=None,
-            color=colour, marker=marker, log_by=log_by, best_fit=False
-        )
-
 axarray[1].set_title('Temporal convergence')
 axarray[1].set_xlabel(xlabel, labelpad=-10)
+axarray[1].set_ylabel(ylabel, labelpad=-10)
 axarray[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=2, fontsize='small')
 
 # Manually set ticks

@@ -21,7 +21,7 @@ test = 'dry_baroclinic_sphere'
 # ---------------------------------------------------------------------------- #
 # Directory for results and plots
 # ---------------------------------------------------------------------------- #
-results_file_name = '/data/users/alex.brown/data/isambard/dry_baroclinic_sphere_dt450_C96_30L/field_output.nc'
+results_file_name = f'{abspath(dirname(__file__))}/../results/{test}/field_output.nc'
 plot_stem = f'{abspath(dirname(__file__))}/../figures/{test}'
 
 # ---------------------------------------------------------------------------- #

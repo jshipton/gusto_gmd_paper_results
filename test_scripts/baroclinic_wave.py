@@ -25,11 +25,11 @@ from gusto import (
 )
 
 dry_baroclinic_sphere_defaults = {
-    'ncell_per_edge': 32,      # 48 is max
+    'ncell_per_edge': 48,      # 48 is max that will fit in memory here
     'nlayers': 15,             # 15 is fine
-    'dt': 900.0,               # 15 minutes
+    'dt': 600.0,               # 10 minutes
     'tmax': 10.*24.*60.*60.,   # 10 days
-    'dumpfreq': 48,            # Corresponds to every 12 hours with default opts
+    'dumpfreq': 72,            # Corresponds to every 12 hours with default opts
     'dirname': 'dry_baroclinic_sphere',
     'horder': 1,
     'vorder': 1

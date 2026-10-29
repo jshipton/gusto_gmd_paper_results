@@ -14,7 +14,7 @@ galewsky_jet_cubed_sphere:
 
 baroclinic_wave:
 	mpiexec -n 120 python3 test_scripts/baroclinic_wave.py \
-		--ncells_per_edge 32
+		--ncells_per_edge 48
 
 straka_degree_0:
 	mpiexec -n 32 python3 test_scripts/straka_degree_0.py \

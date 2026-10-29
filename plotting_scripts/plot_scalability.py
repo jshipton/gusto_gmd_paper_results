@@ -23,7 +23,6 @@ plot_dir = f'{abspath(dirname(__file__))}/../figures'
 
 plot_name = f'{plot_dir}/gusto_scalability.png'
 time_name = 'from_first_step_wall_time'
-csv_suffix = ''
 
 set_tomplot_style(20)
 fig, axarray = plt.subplots(1, 2, figsize=(16, 7))
@@ -32,7 +31,7 @@ fig, axarray = plt.subplots(1, 2, figsize=(16, 7))
 # Strong Scaling
 # ---------------------------------------------------------------------------- #
 
-csv_file = f'/data/users/thomas.bendall/gusto_gmd_paper_results/results/baroclinic_wave_strong_scaling{csv_suffix}.csv'
+csv_file = f'/data/users/thomas.bendall/gusto_gmd_paper_results/results/strong_scaling.csv'
 xlabel = r"Number of Cores"
 ylabel = r"Speed (Timesteps Per Wallclock Second)"
 
@@ -81,16 +80,19 @@ axarray[0].errorbar(
 for i, (x, y, dofs) in enumerate(zip(unique_process_counts, mean_speeds, dofs_per_proc)):
     if i == 0:
         ha = 'left'
+        va = 'top'
         offset = (0, -18)
     elif i == len(unique_process_counts) - 1:
         ha = 'right'
-        offset = (8, -10)
+        va = 'bottom'
+        offset = (8, 10)
     else:
         ha = 'center'
+        va = 'top'
         offset = (0, -18)
     axarray[0].annotate(
         f'DoFs per core:\n{format_dofs(dofs)}', (x, y), textcoords='offset points',
-        xytext=offset, ha=ha, va='top', fontsize=11
+        xytext=offset, ha=ha, va=va, fontsize=11
     )
 
 # Ideal scaling line, going through first point
@@ -117,7 +119,7 @@ axarray[0].grid()
 # Weak Scaling
 # ---------------------------------------------------------------------------- #
 
-csv_file = f'/data/users/thomas.bendall/gusto_gmd_paper_results/results/baroclinic_wave_weak_scaling{csv_suffix}.csv'
+csv_file = f'/data/users/thomas.bendall/gusto_gmd_paper_results/results/weak_scaling.csv'
 xlabel = r"Number of Cores"
 ylabel = r"Speed (Timesteps Per Wallclock Second)"
 
@@ -186,7 +188,7 @@ axarray[1].text(
     transform=axarray[1].transAxes, ha='center', va='top', fontsize=16
 )
 axarray[1].set_ylim(0, 0.3)
-axarray[1].set_yticks([0, 0.1, 0.2, 0.3])
+axarray[1].set_yticks([0, 0.1, 0.2, 0.35])
 axarray[1].set_yticklabels([r'$0.0$', '', '', r'$0.3$'])
 axarray[1].grid()
 
